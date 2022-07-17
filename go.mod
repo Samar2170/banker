@@ -5,6 +5,7 @@ go 1.18
 require github.com/go-chi/chi/v5 v5.0.7
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/klauspost/compress v1.15.8 // indirect
 	github.com/montanaflynn/stats v0.6.6 // indirect
