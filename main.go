@@ -7,6 +7,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/samar2170/banker/pkg/auth"
 	"github.com/samar2170/banker/pkg/db"
 )
 
@@ -31,6 +32,7 @@ func main() {
 	index := http.HandlerFunc(hello)
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
+	r.Use(auth.AuthMiddleware)
 	r.Get("/", index)
 	r.Post("/signup", signup)
 	r.Post("/login", login)
