@@ -39,7 +39,6 @@ func main() {
 	http.ListenAndServe(":8080", r)
 
 }
-
 func signup(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
@@ -65,6 +64,11 @@ func login(w http.ResponseWriter, r *http.Request) {
 	user := db.User{Username: username, Password: password}
 	// db.Insert(&user)
 	user.Authenticate()
-	w.Write([]byte("Logged in"))
+	token, err := auth.GenerateToken(username, "abc@xyz.in")
+	if err != nil {
+		w.Write([]byte("Error generating token" + err.Error()))
+		return
+	}
+	w.Write([]byte(token))
 
 }
